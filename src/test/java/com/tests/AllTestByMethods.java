@@ -1,6 +1,7 @@
 package com.tests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.taskmanagementapp.model.Search;
 import com.taskmanagementapp.model.TMAModel;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 public class AllTestByMethods {
@@ -94,4 +96,30 @@ public class AllTestByMethods {
         Assert.assertEquals (response.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
 
     }
+
+    @Test
+    public void search1() throws Exception{
+
+        HttpClient httpclient = HttpClients.createDefault();
+
+        HttpPost httppost = new HttpPost("http://54.71.121.190:8080/taskmanagementapp/rest/tmaapi/search");
+        httppost.setHeader("Accept", "application/json");
+        httppost.setHeader("Content-type", "application/json");
+
+        Search search = new Search();
+        search.setCreatedBy("four");
+        search.setBefore(0);
+        search.setCreationTimeStamp(new Date());
+        search.setTaskEndDate(new Date());
+
+        String json = mapper.writeValueAsString(search);
+        StringEntity entity = new StringEntity(json);
+        httppost.setEntity(entity);
+
+        HttpResponse response = httpclient.execute(httppost);
+
+        Assert.assertEquals (response.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
+
+    }
+
 }
