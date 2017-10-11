@@ -7,12 +7,12 @@ CREATE TABLE  `tmadatabase`.`tmatable` (
 
   `taskID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 
-  `taskName` varchar(255) NOT NULL,
-  `taskEndDate` datetime NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `createdBy` varchar(255) NOT NULL,
+  `taskName` varchar(255) ,
+  `taskEndDate` datetime ,
+  `description` varchar(255) ,
+  `createdBy` varchar(255) ,
 
-  `creationTimeStamp` datetime NOT NULL,
+  `creationTimeStamp` datetime ,
 
   PRIMARY KEY (`taskID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARACTER SET utf8mb4;
